@@ -1,0 +1,114 @@
+\PassOptionsToPackage{unicode}{hyperref}
+\documentclass[aspectratio=1610, 9pt]{beamer}
+
+% Text
+\usepackage[no-math]{fontspec}
+\defaultfontfeatures{Ligatures=TeX}  % -- becomes en-dash etc.
+
+\usepackage[ngerman, english]{babel}
+
+\usepackage{csquotes}
+
+
+% Tables
+\usepackage{booktabs}       % \toprule, \midrule, \bottomrule, etc
+\usepackage{multirow}
+
+% Figures
+\usepackage{graphicx}
+
+\usepackage{float}
+\floatplacement{figure}{htbp}
+\floatplacement{table}{htbp}
+
+\usepackage{caption}
+\usepackage{subcaption}
+
+\usepackage{tikz}
+\tikzset{
+    use page relative coordinates/.style={
+        shift={(current page.south west)},
+        x={(current page.south east)},
+        y={(current page.north west)}
+    },
+}
+
+% Scientific notation
+\usepackage[version=3]{mhchem}
+
+\usepackage[
+  locale=US,
+  separate-uncertainty=true,
+  %per-mode=symbol-or-fraction,
+  per-mode=reciprocal
+]{siunitx}
+\DeclareSIUnit{\atomicunit}{a.u.}
+
+% Math
+%\usepackage{amsmath}
+%\usepackage{amssymb}
+%\usepackage{mathtools}
+
+% Enable Unicode-Math and follow the ISO-Standards for typesetting math
+%\usepackage[
+%  math-style=ISO,
+%  bold-style=ISO,
+%  sans-style=italic,
+%  nabla=upright,
+%  partial=upright,
+%  warnings-off={mathtools-colon,mathtools-overbracket}, % suppress some unnecessary warnings
+%]{unicode-math}
+%\setmathfont{Latin Modern Math}
+%\setmathfont[range={cal}]{Latin Modern Math}
+
+\usepackage{xfrac}
+
+% hyperref
+\usepackage{hyperref}
+\usepackage{bookmark}
+
+% Bibliography
+\usepackage[
+  backend=biber,   % use modern biber backend
+  autolang=hyphen, % load hyphenation rules for if language of bibentry is not german, has to be loaded with \setotherlanguages in the references.bib use langid={en} for english sources
+  sorting=none,    % 
+]{biblatex}
+\addbibresource{references.bib}  % the bib file to use
+\DefineBibliographyStrings{american}{andothers = {{et\,al\adddot}}}  % replace u.a. with et al.
+
+\usetheme{age}
+
+% Presentation information
+\title[Short title]{Long title}
+\subtitle{Subtitle}
+\author[A. P. Krone]{Adrian Peter Krone}
+\institute[AGE]{AG Ehresmann \\ Faculty of Mathematics and Natural Sciences \\ University of Kassel}
+\date{\today}
+\titlegraphic{\includegraphics[width=0.7\textwidth]{images/group_photo.jpg}}
+
+\begin{document}
+
+\begin{frame}
+  \titlepage
+\end{frame}
+
+\section{Introduction}
+
+\begin{frame}{}
+    
+\end{frame}
+
+\section{Thanks}
+
+\begin{frame}{}
+    \centering \Huge
+    \emph{Thank you for your attention!}
+\end{frame}
+
+\section{References}
+
+\begin{frame}[allowframebreaks]{}
+    \printbibliography
+\end{frame}
+
+\end{document}
