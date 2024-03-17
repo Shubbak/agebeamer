@@ -1,0 +1,50 @@
+% See the file LICENSE for more details.
+
+\mode<presentation>
+
+% Set square items
+\setbeamertemplate{sections/subsections in toc}[square]
+\setbeamertemplate{items}[square]
+
+
+% Add rules to title page
+\defbeamertemplate{title}{age}[1][]{%
+  \begin{beamercolorbox}[sep=8pt,center,#1]{title}
+    \textcolor{secondary}{\rule{\textwidth}{1pt}}\\[0.5\baselineskip]%
+    \usebeamerfont{title}\inserttitle\par%
+    \ifx\insertsubtitle\@empty%
+    \else%
+      \vskip0.25em%
+      {\usebeamerfont{subtitle}\usebeamercolor[fg]{subtitle}\insertsubtitle\par}%
+    \fi%
+    \textcolor{secondary}{\rule{\textwidth}{1pt}}%   
+  \end{beamercolorbox}%
+}
+
+
+\defbeamertemplate*{title page}{age}[1][]
+{
+  \vbox{}
+  \vfill
+  \begingroup
+    \centering
+    \usebeamertemplate{title}
+    \vskip1em\par
+    \usebeamertemplate{author}
+    \usebeamertemplate{institute}
+    \usebeamertemplate{date}
+    \vskip0.5em
+    \usebeamertemplate{titlegraphic}
+  \endgroup
+  \vfill
+}[action]{
+  \setbeamertemplate{title}[age][#1]
+  \setbeamertemplate{author}[default][#1]
+  \setbeamertemplate{institute}[default][#1]
+  \setbeamertemplate{date}[default][#1]
+  \setbeamertemplate{titlegraphic}[default]
+}
+
+
+\mode
+<all>

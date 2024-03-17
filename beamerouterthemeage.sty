@@ -1,0 +1,144 @@
+% See the file LICENSE.md for more details.
+
+% tikz for drawing the frame title
+\RequirePackage{tikz}
+
+% optionally remove headline
+\newif\ifbeamer@noheadline
+\DeclareOptionBeamer{noheadline}{\beamer@noheadlinetrue}
+\ProcessOptionsBeamer
+
+\mode<presentation>
+
+\beamer@compresstrue
+
+\AtBeginDocument{
+  {
+    \ifbeamer@noheadline%
+    \else%
+      \usebeamerfont*{headline}
+      \colorlet{global.bg}{bg}
+      \usebeamercolor{section in head/foot}
+      \usebeamercolor{frametitle}
+
+      \pgfdeclareverticalshading{beamer@barshade}{\the\paperwidth}{%
+        color(0ex)=(section in head/foot.bg);%
+        color(6ex)=(section in head/foot.bg)%
+      }
+      \pgfdeclareverticalshading{beamer@aboveframetitle}{\the\paperwidth}{%
+        color(0ex)=(frametitle.bg);%
+        color(1ex)=(frametitle.bg);%
+        color(1ex)=(section in head/foot.bg)
+      } 
+    
+      \begingroup
+        \selectcolormodel{gray}
+        \pgfdeclareverticalshading{beamer@belowframetitle}{\the\paperwidth}{%
+          color(0ex)=(pgftransparent!100);%
+          color(1ex)=(pgftransparent!0)
+        }
+        \pgfdeclarefading{beamer@belowframetitlemask}{\pgfuseshading{beamer@belowframetitle}}
+      \endgroup
+    \fi%
+  }
+}
+
+% Navigation symbols
+
+\defbeamertemplate*{navigation symbols}{}
+
+\setbeamercolor*{author in head/foot}{parent=palette tertiary}
+\setbeamercolor*{title in head/foot}{parent=palette secondary}
+\setbeamercolor*{date in head/foot}{parent=palette primary}
+
+\setbeamercolor*{section in head/foot}{parent=palette tertiary}
+\setbeamercolor*{subsection in head/foot}{parent=palette primary}
+
+\setbeamertemplate{page number in head/foot}[totalframenumber]%
+
+\defbeamertemplate*{footline}{age theme}
+{%
+  \leavevmode%
+  \ifnum\insertframenumber=1%
+  \else%
+    \hbox{%
+    \begin{tikzpicture}[overlay, remember picture]%
+      \usebeamerfont{author in head/foot}%
+      \fill[k20] (current page.south west) rectangle ([shift={(0,3.5ex)}]current page.south east);%
+      \draw[line width=2pt, color=primary] ([shift={(0,3.5ex)}]current page.south west) -- ([shift={(0,3.5ex)}]current page.south east);%
+    \end{tikzpicture}%
+    \begin{beamercolorbox}[wd=.333333\paperwidth,ht=2.25ex,dp=1ex,left,leftskip=1ex]{author in head/foot}%
+      \usebeamerfont{author in head/foot}\insertshortauthor\expandafter\ifblank\expandafter{\beamer@shortinstitute}{}{~~(\insertshortinstitute)}
+    \end{beamercolorbox}%
+    \begin{beamercolorbox}[wd=.333333\paperwidth,ht=2.25ex,dp=1ex,center]{title in head/foot}%
+      \usebeamerfont{title in head/foot}\insertshorttitle
+    \end{beamercolorbox}%
+    \begin{beamercolorbox}[wd=.333333\paperwidth,ht=2.25ex,dp=1ex,leftskip=2ex,rightskip=2ex,sep=0pt]{date in head/foot}%
+      \hfill%
+      \usebeamerfont{date in head/foot}%
+      \insertshortdate{}%
+      \hfill%
+      \usebeamercolor[fg]{page number in head/foot}%
+      \usebeamerfont{page number in head/foot}%
+      \usebeamertemplate{page number in head/foot}%
+    \end{beamercolorbox}}%
+  \fi%
+  \vskip0pt%
+}
+
+\defbeamertemplate*{headline}{age theme}
+{%
+  \ifbeamer@noheadline%
+  \else%
+    \pgfuseshading{beamer@barshade}%
+    \vskip-0.05ex%
+    \begin{beamercolorbox}[wd=\paperwidth,ht=1ex,dp=0ex]{empty}
+    \begin{pgfpicture}
+      \begin{pgfscope}%
+        \pgfsetfillcolor{section in head/foot.bg}%
+        \pgfpathrectangle{\pgfpoint{-.5\paperwidth}{-0.5ex}}{\pgfpoint{\paperwidth}{1ex}}%
+        \pgfsetfading{beamer@belowframetitlemask}{}%
+        \pgfusepath{fill}%
+      \end{pgfscope}%
+    \end{pgfpicture}%
+    \end{beamercolorbox}%
+    \vskip-6.85ex%
+    \begin{beamercolorbox}[ignorebg,ht=2.25ex,dp=2.5ex]{section in head/foot}
+      \insertnavigation{\paperwidth}
+    \end{beamercolorbox}%
+  \fi%
+  \vskip0pt%
+}%
+
+\defbeamertemplate*{frametitle}{age theme}
+{%
+  \vskip-1pt%
+  \hbox{\leavevmode
+    \hskip-\Gm@lmargin%
+    \hbox{%
+      \usebeamerfont{frametitle}%
+      \begin{tikzpicture}%
+        % Draw the background rectangle
+        \fill[k20] (current page.north west) rectangle ([shift={(0,-3.0ex)}]current page.north east);%
+        % Manually specify the bounding box
+        \useasboundingbox (current page.north west) rectangle ([shift={(0,-3.0ex)}]current page.north east);%
+        % Draw hysteresis
+        \draw[line width=2pt, color=primary] ([shift={(0.2\paperwidth,0)}]current page.north west) -- ([shift={(0.2\paperwidth,-3.0ex)}]current page.north west);%
+        \draw[line width=2pt, color=primary] ([shift={(0.9\paperwidth,0)}]current page.north west) -- ([shift={(0.9\paperwidth,-3.0ex)}]current page.north west);%
+        \draw[line width=2pt, color=primary] ([shift={(0,-3.0ex+1pt)}]current page.north west) -- ([shift={(0.9\paperwidth,-3.0ex+1pt)}]current page.north west);%
+        \draw[line width=2pt, color=primary] ([shift={(0.2\paperwidth,-1pt)}]current page.north west) -- ([shift={(\paperwidth,-1pt)}]current page.north west);%
+        % Add text
+        \node[anchor=center, align=center, primary] at ([xshift=0.55\paperwidth,yshift=-1.5ex]current page.north west) {\expandafter\ifblank\expandafter{\beamer@frametitle}{\insertshorttitle}{\beamer@frametitle}};%
+        % Add logos
+        \node[anchor=center, align=center] at ([xshift=0.1\paperwidth,yshift=-1.5ex+1pt]current page.north west) {\includegraphics[height=2.75ex]{logos/unikassel.pdf}};%
+        \node[anchor=center, align=center] at ([xshift=0.95\paperwidth,yshift=-1.5ex-1pt]current page.north west) {\includegraphics[height=2.75ex]{logos/age.png}};%
+      \end{tikzpicture}%
+    }%
+  }%
+  \vskip0pt%
+}
+
+\setbeamersize{text margin left=1em,text margin right=1em}
+
+\mode
+<all>
