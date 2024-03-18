@@ -47,44 +47,38 @@
 
 \defbeamertemplate*{navigation symbols}{}
 
-\setbeamercolor*{author in head/foot}{parent=palette tertiary}
-\setbeamercolor*{title in head/foot}{parent=palette secondary}
-\setbeamercolor*{date in head/foot}{parent=palette primary}
 
-\setbeamercolor*{section in head/foot}{parent=palette tertiary}
+% footline and headline
+
+\setbeamercolor*{author in head/foot}{parent=palette primary,bg=secondary}
+\setbeamercolor*{date in head/foot}{parent=palette primary,bg=secondary}
+\setbeamercolor*{title in head/foot}{parent=palette secondary,bg=secondary}
+\setbeamercolor*{page number in head/foot}{parent=palette primary,bg=secondary}
+
+\setbeamercolor*{section in head/foot}{parent=palette tertiary,bg=secondary}
 \setbeamercolor*{subsection in head/foot}{parent=palette primary}
 
 \setbeamertemplate{page number in head/foot}[totalframenumber]%
 
 \defbeamertemplate*{footline}{age theme}
 {%
+  \begin{beamercolorbox}[colsep=1pt]{upper separation line foot}
+  \end{beamercolorbox}
   \leavevmode%
-  \ifnum\insertframenumber=1%
-  \else%
-    \hbox{%
-    \begin{tikzpicture}[overlay, remember picture]%
-      \usebeamerfont{author in head/foot}%
-      \fill[k20] (current page.south west) rectangle ([shift={(0,3.5ex)}]current page.south east);%
-      \draw[line width=2pt, color=primary] ([shift={(0,3.5ex)}]current page.south west) -- ([shift={(0,3.5ex)}]current page.south east);%
-    \end{tikzpicture}%
-    \begin{beamercolorbox}[wd=.333333\paperwidth,ht=2.25ex,dp=1ex,left,leftskip=1ex]{author in head/foot}%
-      \usebeamerfont{author in head/foot}\insertshortauthor\expandafter\ifblank\expandafter{\beamer@shortinstitute}{}{~~(\insertshortinstitute)}
-    \end{beamercolorbox}%
-    \begin{beamercolorbox}[wd=.333333\paperwidth,ht=2.25ex,dp=1ex,center]{title in head/foot}%
-      \usebeamerfont{title in head/foot}\insertshorttitle
-    \end{beamercolorbox}%
-    \begin{beamercolorbox}[wd=.333333\paperwidth,ht=2.25ex,dp=1ex,leftskip=2ex,rightskip=2ex,sep=0pt]{date in head/foot}%
-      \hfill%
-      \usebeamerfont{date in head/foot}%
-      \insertshortdate{}%
-      \hfill%
-      \usebeamercolor[fg]{page number in head/foot}%
-      \usebeamerfont{page number in head/foot}%
-      \usebeamertemplate{page number in head/foot}%
-    \end{beamercolorbox}}%
-  \fi%
+  \begin{beamercolorbox}[wd=0.3\paperwidth,ht=2.25ex,dp=1ex,left,leftskip=1ex]{author in head/foot}%
+    \usebeamerfont{author in head/foot}\insertshortauthor~|~%
+    \usebeamerfont{date in head/foot}\insertshortdate{}%
+  \end{beamercolorbox}%
+  \begin{beamercolorbox}[wd=0.4\paperwidth,ht=2.25ex,dp=1ex,center]{title in head/foot}%
+    \usebeamerfont{title in head/foot}\insertshorttitle%
+  \end{beamercolorbox}%
+  \begin{beamercolorbox}[wd=0.3\paperwidth,ht=2.25ex,dp=1ex,right,rightskip=1ex]{page number in head/foot}%
+    \usebeamercolor[fg]{page number in head/foot}%
+    \usebeamerfont{page number in head/foot}%
+    \usebeamertemplate{page number in head/foot}%
+  \end{beamercolorbox}%
   \vskip0pt%
-}
+}%
 
 \defbeamertemplate*{headline}{age theme}
 {%
@@ -137,8 +131,47 @@
   }%
   \vskip0pt%
 }
+%\defbeamertemplate*{frametitle}{age theme}
+%{%
+%  \nointerlineskip%
+%  %\vskip-2pt%
+%  \vbox{%
+%  \hbox{\leavevmode%
+%  \hskip-\Gm@lmargin%
+%  \begin{beamercolorbox}[wd=\dimexpr-1pt+0.2\paperwidth\relax,dp=2pt]{section in head/foot}%
+%  \end{beamercolorbox}%
+%  \begin{beamercolorbox}[wd=\dimexpr1pt+0.8\paperwidth\relax,dp=2pt]{upper separation line foot}%
+%  \end{beamercolorbox}%
+%  }
+%  \vskip-1pt%
+%  \hbox{\leavevmode%
+%  \hskip-\Gm@lmargin%
+%  \begin{beamercolorbox}[wd=\dimexpr-1pt+0.2\paperwidth\relax,ht=2.25ex,dp=1ex]{section in head/foot}%
+%  \end{beamercolorbox}%
+%  \begin{beamercolorbox}[wd=2pt,ht=2.25ex,dp=1ex]{upper separation line foot}%
+%  \end{beamercolorbox}%
+%  \begin{beamercolorbox}[wd=\dimexpr-2pt+0.7\paperwidth\relax,ht=2.25ex,dp=1ex,center]{section in head/foot}%
+%    %\usebeamercolor[fg]{frametitle}\usebeamerfont{frametitle}\strut\insertframetitle\strut\par%
+%  \end{beamercolorbox}%
+%  \begin{beamercolorbox}[wd=2pt,ht=2.25ex,dp=1ex]{upper separation line foot}%
+%  \end{beamercolorbox}%
+%  \begin{beamercolorbox}[wd=\dimexpr-1pt+0.1\paperwidth\relax,ht=2.25ex,dp=1ex]{section in head/foot}%
+%  \end{beamercolorbox}%
+%  }
+%  %\vskip-1px%
+%  %\vskip-2pt%
+%  %\vskip-1ex%
+%  \hbox{\leavevmode%
+%  \hskip-\Gm@lmargin%
+%  \begin{beamercolorbox}[wd=\dimexpr1pt+0.9\paperwidth\relax,dp=2pt]{upper separation line foot}%
+%  \end{beamercolorbox}%
+%  \begin{beamercolorbox}[wd=\dimexpr-1pt+0.1\paperwidth\relax,dp=2pt]{section in head/foot}%
+%  \end{beamercolorbox}%
+%  }
+%  }%
+%  \vskip0pt%
+%}%
 
-\setbeamersize{text margin left=1em,text margin right=1em}
 
 \mode
 <all>
