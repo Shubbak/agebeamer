@@ -12,11 +12,19 @@
 \usepackage{csquotes} % recommended for biblatex
 
 % load fonts
-\usepackage[no-math]{fontspec}
-\setsansfont{DejaVu Sans} % beamerfontthemeage.sty sets all text to sans serif
+\usepackage{fontspec}
+%\setsansfont{DejaVu Sans} % beamerfontthemeage.sty sets all text to sans serif
+\setsansfont[
+  Path=./fonts/,
+  Extension=.otf,
+  UprightFont=Iwona-Regular,
+  BoldFont=Iwona-Bold,
+  ItalicFont=Iwona-Italic,
+  BoldItalicFont=Iwona-BoldItalic
+]{Iwona}
 
 % Tables
-\usepackage{booktabs}       % \toprule, \midrule, \bottomrule, etc
+\usepackage{booktabs} % \toprule, \midrule, \bottomrule, etc
 \usepackage{multirow}
 
 % Figures
@@ -42,17 +50,6 @@
 \usepackage{amssymb}
 \usepackage{mathtools}
 \usepackage{bm}
-% Enable Unicode-Math and follow the ISO-Standards for typesetting math
-\usepackage[
-  math-style=ISO,
-  bold-style=ISO,
-  sans-style=italic,
-  nabla=upright,
-  partial=upright,
-  warnings-off={mathtools-colon,mathtools-overbracket}, % suppress some unnecessary warnings
-]{unicode-math}
-\setmathfont{Tex Gyre DejaVu Math}
-\setmathfont[range={cal}]{Tex Gyre DejaVu Math}
 
 % Scientific notation
 \usepackage[version=4]{mhchem}
@@ -60,8 +57,7 @@
 \usepackage[
   locale=US,
   separate-uncertainty=true,
-  %per-mode=symbol-or-fraction,
-  per-mode=reciprocal
+  per-mode=reciprocal % per-mode=symbol-or-fraction,
 ]{siunitx}
 \DeclareSIUnit{\atomicunit}{a.u.}
 \DeclareSIUnit{\arbu}{arb.\,u.}
@@ -182,7 +178,7 @@
 
 \subsection{Subsection Title (Currently Only Visible In TOC)}
 
-\begin{frame}{Frame Title (Keep Short)}{Frame Subtitle (Optional, Can Be Longer But Only 1 Line)}
+\begin{frame}{Frame Title (Keep Short)}{Frame Subtitle (Optional, Can Be Longer But No Longer Than One Line)}
   % - A title should summarize the slide in an understandable fashion
   %   for anyone who does not follow everything on the slide itself.
   \begin{columns}
@@ -196,7 +192,7 @@
       \item Use \texttt{columns} environment for side by side content.
     \end{itemize}
   \end{columns}
-  \begin{block}{Some Math}
+  \begin{block}{Some Math In A Block}
     \begin{equation}
       \biggl(\frac{\hat{p}^2}{2 \mu} + U_{e \Lambda=0 \Sigma=0}\left(R\right) - \frac{\hbar^2}{2 \mu R^2} \cdot J \left(J + 1\right) \biggr) \cdot \chi^J_v\left(R\right) = E^J_v \cdot \chi^J_v\left(R\right)
     \end{equation}
