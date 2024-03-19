@@ -9,12 +9,66 @@
 % select language with \selectlanguage{<language>}
 \usepackage[ngerman,english]{babel}
 
+\usepackage{csquotes} % recommended for biblatex
+
 % load fonts
 \usepackage{fontspec}
-\setsansfont{Open Sans} % beamerfontthemeage.sty sets all text to sans serif
+\setsansfont{DejaVu Sans} % beamerfontthemeage.sty sets all text to sans serif
+
+% Tables
+\usepackage{booktabs}       % \toprule, \midrule, \bottomrule, etc
+\usepackage{multirow}
+
+% Figures
+\usepackage{graphicx}
+\usepackage{xcolor}
+
+\usepackage{float}
+\floatplacement{figure}{htbp}
+\floatplacement{table}{htbp}
+
+\usepackage{caption}
+\usepackage{subcaption}
+
+\usepackage{tikz}
+\tikzset{use page relative coordinates/.style={
+  shift={(current page.south west)},
+  x={(current page.south east)},
+  y={(current page.north west)}
+},}
+
+% Math
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathtools}
+\usepackage{bm}
+% Enable Unicode-Math and follow the ISO-Standards for typesetting math
+\usepackage[
+  math-style=ISO,
+  bold-style=ISO,
+  sans-style=italic,
+  nabla=upright,
+  partial=upright,
+  warnings-off={mathtools-colon,mathtools-overbracket}, % suppress some unnecessary warnings
+]{unicode-math}
+\setmathfont{DejaVu Sans}
+\setmathfont[range={cal}]{DejaVu Sans}
+
+% Scientific notation
+\usepackage[version=4]{mhchem}
+
+\usepackage[
+  locale=US,
+  separate-uncertainty=true,
+  %per-mode=symbol-or-fraction,
+  per-mode=reciprocal
+]{siunitx}
+\DeclareSIUnit{\atomicunit}{a.u.}
+\DeclareSIUnit{\arbu}{arb.\,u.}
 
 % hyperlinks
 \usepackage{hyperref}
+\usepackage{bookmark}
 
 % Bibliography
 \usepackage[
@@ -60,7 +114,9 @@
 % This is only inserted into the PDF information catalog. Can be left
 % out. 
 
-
+% Add logo to the upper right corner of the frames
+\logo{\includegraphics[width=0.07\paperwidth]{logos/age_new.pdf}}
+%\logo{\includegraphics[width=0.07\paperwidth]{logos/age.png}} % use this for the old logo
 
 % Add logos to the title page
 \titlegraphic{%
@@ -94,15 +150,6 @@
 
 %\beamerdefaultoverlayspecification{<+->}
 
-\makeatletter
-\newcommand{\showfont}{encoding: \f@encoding{},
-  family: \f@family{},
-  series: \f@series{},
-  shape: \f@shape{},
-  size: \f@size{}
-}
-\makeatother
-
 
 \begin{document}
 
@@ -131,7 +178,7 @@
 % - If you omit details that are vital to the proof/implementation,
 %   just say so once. Everybody will be happy with that.
 
-\section{Section Title (Currently Only Visible In TOC)}
+\section{Section Title (Currently Only Visible In TOC Or Headline)}
 
 \subsection{Subsection Title (Currently Only Visible In TOC)}
 
@@ -143,7 +190,6 @@
     \item Use \texttt{itemize} a lot.
     \item Use very short sentences or short phrases.
   \end{itemize}
-  \showfont
 \end{frame}
 
 \begin{frame}{Latex Beamer Overlays}
