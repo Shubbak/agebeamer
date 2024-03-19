@@ -139,6 +139,15 @@
         \node[anchor=center, align=center] at ([xshift=0.95\paperwidth,yshift=-1.5ex-1pt]current page.north west) {\beamer@logo};%
       \end{tikzpicture}%
     }%
+  }
+  \ifblank{\beamer@framesubtitle}%
+  {}%
+  {% else
+    \hbox{\leavevmode%
+    \usebeamerfont{framesubtitle}%
+    \begin{beamercolorbox}[wd=\textwidth,ht=2.25ex,dp=1ex,left]{framesubtitle}%
+      \usebeamerfont{framesubtitle}\insertframesubtitle%
+    \end{beamercolorbox}}%
   }%
   \vskip0pt%
 }

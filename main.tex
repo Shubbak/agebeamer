@@ -182,14 +182,20 @@
 
 \subsection{Subsection Title (Currently Only Visible In TOC)}
 
-\begin{frame}{Frame Title}{Frame Subtitles Currently Do Nothing}
+\begin{frame}{Frame Title (Keep Short)}{Frame Subtitle (Optional, Can Be Longer But Only 1 Line)}
   % - A title should summarize the slide in an understandable fashion
   %   for anyone who does not follow everything on the slide itself.
-  % - Subtitles do not work with the current theme
-  \begin{itemize}
-    \item Use \texttt{itemize} a lot.
-    \item Use very short sentences or short phrases.
-  \end{itemize}
+  \begin{columns}
+    \column{0.5\textwidth}
+    \begin{itemize}
+      \item Use \texttt{itemize} a lot.
+      \item Use very short sentences or short phrases.
+    \end{itemize}
+    \column{0.5\textwidth}
+    \begin{itemize}
+      \item Use \texttt{columns} environment for side by side content.
+    \end{itemize}
+  \end{columns}
 \end{frame}
 
 \begin{frame}{Latex Beamer Overlays}
