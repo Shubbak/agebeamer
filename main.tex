@@ -12,7 +12,7 @@
 \usepackage{csquotes} % recommended for biblatex
 
 % load fonts
-\usepackage{fontspec}
+\usepackage[no-math]{fontspec}
 \setsansfont{DejaVu Sans} % beamerfontthemeage.sty sets all text to sans serif
 
 % Tables
@@ -51,8 +51,8 @@
   partial=upright,
   warnings-off={mathtools-colon,mathtools-overbracket}, % suppress some unnecessary warnings
 ]{unicode-math}
-\setmathfont{DejaVu Sans}
-\setmathfont[range={cal}]{DejaVu Sans}
+\setmathfont{Tex Gyre DejaVu Math}
+\setmathfont[range={cal}]{Tex Gyre DejaVu Math}
 
 % Scientific notation
 \usepackage[version=4]{mhchem}
@@ -196,6 +196,11 @@
       \item Use \texttt{columns} environment for side by side content.
     \end{itemize}
   \end{columns}
+  \begin{block}{Some Math}
+    \begin{equation}
+      \biggl(\frac{\hat{p}^2}{2 \mu} + U_{e \Lambda=0 \Sigma=0}\left(R\right) - \frac{\hbar^2}{2 \mu R^2} \cdot J \left(J + 1\right) \biggr) \cdot \chi^J_v\left(R\right) = E^J_v \cdot \chi^J_v\left(R\right)
+    \end{equation}
+  \end{block}
 \end{frame}
 
 \begin{frame}{Latex Beamer Overlays}
