@@ -2,77 +2,15 @@
 
 \mode<presentation>
 {
-  \usetheme[noheadline]{age}
+  \usetheme[noheadlline]{age}   % remove `noheadline` to show a progress bar with the current section and dots representing the slides
 }
 
 % load languages (last language is the main language)
 % select language with \selectlanguage{<language>}
 \usepackage[ngerman,english]{babel}
 
-\usepackage{csquotes} % recommended for biblatex
+\input{preamble} % load usual packages and settings from preamble.tex
 
-% load fonts
-\usepackage{fontspec}
-%\setsansfont{DejaVu Sans} % beamerfontthemeage.sty sets all text to sans serif
-\setsansfont[
-  Path=./fonts/,
-  Extension=.otf,
-  UprightFont=Iwona-Regular,
-  BoldFont=Iwona-Bold,
-  ItalicFont=Iwona-Italic,
-  BoldItalicFont=Iwona-BoldItalic
-]{Iwona}
-
-% Tables
-\usepackage{booktabs} % \toprule, \midrule, \bottomrule, etc
-\usepackage{multirow}
-
-% Figures
-\usepackage{graphicx}
-\usepackage{xcolor}
-
-\usepackage{float}
-\floatplacement{figure}{htbp}
-\floatplacement{table}{htbp}
-
-\usepackage{caption}
-\usepackage{subcaption}
-
-\usepackage{tikz}
-\tikzset{use page relative coordinates/.style={
-  shift={(current page.south west)},
-  x={(current page.south east)},
-  y={(current page.north west)}
-},}
-
-% Math
-\usepackage{amsmath}
-\usepackage{amssymb}
-\usepackage{mathtools}
-\usepackage{bm}
-
-% Scientific notation
-\usepackage[version=4]{mhchem}
-
-\usepackage[
-  locale=US,
-  separate-uncertainty=true,
-  per-mode=reciprocal % per-mode=symbol-or-fraction,
-]{siunitx}
-\DeclareSIUnit{\atomicunit}{a.u.}
-\DeclareSIUnit{\arbu}{arb.\,u.}
-
-% hyperlinks
-\usepackage{hyperref}
-\usepackage{bookmark}
-
-% Bibliography
-\usepackage[
-  backend=biber,   % use modern biber backend
-  autolang=hyphen, % load hyphenation rules for if language of bibentry is not german, has to be loaded with \setotherlanguages in the references.bib use langid={en} for english sources
-  sorting=none,    %
-  style=authoryear,% change citation style
-]{biblatex}
 \addbibresource{references.bib}  % the bib file to use
 \DefineBibliographyStrings{american}{andothers = {{et\,al\adddot}}}  % replace u.a. with et al.
 
@@ -218,8 +156,7 @@
       \uncover<5->{\item First item.}
       \uncover<6->{\item Second item.}
     \end{itemize}
-    \item<7-> or look at: \href{https://www.overleaf.com/learn/latex/Beamer_Presentations\%3A_A_Tutorial_for_Beginners_(Part_4)\%E2\%80\%94Overlay_Specifications}{Overleaf Overlay Tutorial for Beginners}
-  \end{itemize}
+    \item<7-> or look at: \href{https://www.overleaf.com/learn/latex/Beamer_Presentations\%3A_A_Tutorial_for_Beginners_(Part_4)\%E2\%80\%94Overlay_Specifications}{Overleaf Overlay Tutorial for Beginners} \end{itemize}
 \end{frame}
 
 
